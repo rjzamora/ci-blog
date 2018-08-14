@@ -12,10 +12,14 @@
 
 The [Exascale Atomistic capability for Accuracy, Length and Time (EXAALT)](https://www.exascaleproject.org/project/exaalt-molecular-dynamics-at-the-exascale-materials-science/) is an [ECP](https://www.exascaleproject.org/)-funded materials modeling framework designed to leverage extreme-scale parallelism to produce accelerated molecular dynamics simulations. The end goal is to allow the user to access the most appropriate combination of accuracy, length, and time for the problem at hand, trading the costs of various forms of parallelism.  As shown in **Fig 1**, EXAALT is actually a collection of multiple packages, each having its own dependencies. At the heart of EXAALT is the Large-scale Atomic/Molecular Massively Parallel Simulator ([LAMMPS](https://lammps.sandia.gov/)), developed at Sandia National Laboratory (SNL). However, to enable simulations with *ab initio* accuracy and extended time scales, the framework also includes the [LATTE](https://github.com/lanl/LATTE) and [ParSplice](https://gitlab.com/exaalt/parsplice) packages, both developed at Los Alamos Nation Laboratory (LANL).
 
+
+
 <!--- Image to illustrate the complexity of EXAALT --->
 <img src='./dep-graph.png' />
 
 **Fig 1.** Illustration of the EXAALT framework. The three main software components (LAMMPS, LATTE, and ParSplice) are represented as colored circles, while other libraries are represented as grey circles. Lines (graph edges) depict dependencies between the various software components.
+
+
 
 In 2017, LANL focused its annual IS&T Co-Design Summer School program on the topic of accelerated molecular dynamics (AMD).  The idea was to gather a small group of elite graduate students to help optimize the performance of ParSplice, the AMD driver of EXAALT.  During the early weeks of that summer, the developers of ParSplice quickly recognized that their rapidly-evolving code had become difficult for the typical (and even advanced) computational scientist to compile and run.  This was because the existing build system (or lack there of) was becoming prohibitively difficult to negotiate. 
 
@@ -23,9 +27,14 @@ The summer students overcame their early technical difficulties, and accomplishe
 
 The fruitful EXAALT-IDEAS collaboration, which is still ongoing, has proven mutually beneficial to both teams: providing EXAALT with technical advice, and providing IDEAS with clear insight into the fundamental needs of an ECP application project. To help the IDEAS team map their collaboration efforts onto a manageable set of tasks, they leveraged the [Productivity and Sustainability Improvement Planning (PSIP)](https://github.com/betterscientificsoftware/PSIP-Tools/blob/master/PSIP-Overview.md "PSIP Github README") process. For the first stage of the collaboration, the construction of a minimal end-to-end CMake build system, this process was implicitly used for project planning an execution. For the second (ongoing) stage, PSIP was followed more-explicitly by compiling the *planning/tracking cards* shown in **Fig 2** (in summarized form).   
 
+
+
 <!--- Image to show build and test PSIP cards /> --->
-<img src='./psip-ci-test.png' /> 
+<img src='./psip-ci-test.png' />
+
 **Fig 2.** Summarized versions of PSIP process cards used for the EXAALT-IDEAS collaboration.  The specific scores in the figure correspond to the state of the project in mid July (2018): Boost-enabled tests have been added to the CMake build system, and now the existing Gitlab CI pipeline needs to be modified to leverage the current CMake/CTest capabilities.  Note that some details about dependencies and timeline are excluded from the PSIP cards for clarity.
+
+
 
 One significant advantage of the PSIP management approach is that it forces the team to specify the 4-6 steps needed to reach a given goal.  In this case, the process helped formulate the actionable items needed to lay the foundation for CI within the existing EXAALT [software repository](https://gitlab.com/exaalt).  Although PSIP can be used to manage the goals of any software project, the specific details of each step are highly project dependent.  In the current case, after careful discussion between teams, it was decided that the CI pipeline would need to depend on four key technologies:
 
