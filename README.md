@@ -38,10 +38,11 @@ The fruitful EXAALT-IDEAS collaboration, which is still ongoing, has proven mutu
 
 One significant advantage of the PSIP management approach is that it forces the team to specify the 4-6 steps needed to reach a given goal.  In this case, the process helped formulate the actionable items needed to lay the foundation for CI within the existing EXAALT [software repository](https://gitlab.com/exaalt).  Although PSIP can be used to manage the goals of any software project, the specific details of each step are highly project dependent.  In the current case, after careful discussion between teams, it was decided that the CI pipeline would need to depend on four key technologies:
 
-- [**CMake**](https://cmake.org/): To manage the end-to-end compilation and testing execution
-- [**GitLab CI**](https://about.gitlab.com/features/gitlab-ci-cd/): To automatically build and test the software framework (using CMake) to validate new repository commits
+- [**CMake**](https://cmake.org/): To manage the end-to-end compilation and testing execution using CTest
+- [**Boost**](https://www.boost.org/): To implement and organize functionality tests (integration, regression, and unit) inside CTest
+- [**GitLab CI**](https://about.gitlab.com/features/gitlab-ci-cd/): To automatically build and test the software framework (using CMake) to validate new repository commits (usually using docker)
 - [**Docker**](https://www.docker.com/): To generate standard system images (with library dependencies) for use in GitLab CI
-- [**Boost**](https://www.boost.org/): To implement and organize functionality tests (integration, regression, and unit)
+
 
 As illustrated in **Fig 2**, most of the work detailed in the PSIP cards was carried out by members of the IDEAS-EXAALT collaboration by the end of July (2018). With that said, the completion of these PSIP cards does not mean that the EXAALT team is finished improving their CI and/or testing infrastructure. Like most aspects of software engineering, PSIP is an iterative process, and it is always possible that the initial plan will need to change when unexpected roadblocks emerge. Whether or not a PSIP card can be followed to completion, it often makes sense to document, revise, and repeat the process when a natural finishing point is reached. At this stage, the EXAALT team has successfully adopted continuous integration, and is ready to improve their CI pipeline by tackling a related software developement issue: code coverage.
 
